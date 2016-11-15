@@ -17,10 +17,14 @@ mv /path/to/fastq/outdir/SRR445016_2.fastq.gz /path/to/fastq/outdir/SRR445016-ra
 ### <II>. circRNA detection
 
 ## 1. CIRI version: 2.0.1, URL: https://sourceforge.net/projects/ciri/
+#BWA	version: 0.7.12
+
 date && /path/to/software/bwa-0.7.12/bwa mem -t 3 -T 19 /path/to/database/hg19.fa /path/to/fastq/SRR445016_1.fastq.gz /path/to/fastq/SRR445016_2.fastq.gz > /path/to/outdir/SRR445016.sam && echo "ciri begin" && date && \
 perl /path/to/software/CIRI/CIRI_v2.0.1.pl -I /path/to/SRR445016.sam -F /path/to/database/hg19.fa -A /path/to/database/hg19/gencode.v19.annotation.gtf -G /path/to/outdir/SRR445016.log -T 3 -O /path/to/outdir/SRR445016.circRNA && date && echo "ciri done"
 
 ## 2. find_circ version: 1.0, URL: https://github.com/marvin-jens/find_circ
+#Bowtie2	version: 2.1.0
+
 date && \
 /path/to/software/bowtie2-2.1.0/bowtie2 -p 3 --very-sensitive --phred33 --mm -M20 --score-min=C,-15,0 \
 -x /path/to/database/hg19_bowtie/hg19 -q -1 /path/to/fastq/SRR445016_1.fastq.gz -2 /path/to/fastq/SRR445016_2.fastq.gz 2> bowtie2_SRR445016.log \
@@ -68,7 +72,13 @@ cd SRR445016_tophat_out && \
 perl /path/to/software/UROBORUS-0.0.2/bin/UROBORUS.pl -p 3 -index /path/to/database/hg19_bowtie/hg19 -gtf /path/to/database/hg19/genes.gtf -fasta /path/to/database/hg19/ucsc/chrs.fa unmapped.sam && \
 date
 
-## 7. KNIFE version: 1.2.1, URL: https://github.com/lindaszabo/KNIFE
+## 7. KNIFE version: 1.4, URL: https://github.com/lindaszabo/KNIFE
+#bowtie-1.1.2
+#bowtie2-2.2.6
+#perl
+#python2.6
+#R 3.1
+#samtools 0.1.19
 
 #!/bin/bash
 /path/to/software/KNIFE/circularRNApipeline_Standalone/completeRun.sh /path/to/outdir/SRR445016/reads complete /path/to/outdir/SRR445016 SRR445016 13 phred33 circReads 66 2>&1 | tee SRR445016_out.log 
@@ -81,9 +91,11 @@ if [ ! -d SRR445016 ]; then
 fi
 gzip -dc /path/to/fastq/SRR445016_1.fastq.gz > ./SRR445016_1.fastq && \
 date && \
-/path/to/software/PTESFinder/PTESFinder.sh -c /path/to/software/PTESFinder/code -r ./SRR445016_1.fastq -d SRR445016 -t /path/to/software/PTESFinder/data/ucsc-hg19-refGene.bed -g /path/to/software/PTESFinder/data/hg19.fa -b /path/to/software/PTESFinder/data/  -s 90 -u 7  && date && echo "ptesfinder done"
+/path/to/software/PTESFinder/PTESFinder.sh -c /path/to/software/PTESFinder/code -r ./SRR445016_1.fastq -d SRR445016 -t /path/to/software/PTESFinder/data/ucsc-hg19-refGene.bed -g /path/to/software/PTESFinder/data/hg19.fa -b /path/to/software/PTESFinder/data/hg19  -s 90 -u 7  && date && echo "ptesfinder done"
 
 ## 9. circRNA_finder version: NA, URL: https://github.com/orzechoj/circRNA_finder
+#STAR	version: STAR_2.5.1a
+
 /path/to/software/STAR --genomeDir /path/to/database/hg19_star --readFilesIn /path/to/fastq/SRR445016_1.fastq.gz /path/to/fastq/SRR445016_2.fastq.gz --runThreadN 3 --chimSegmentMin 20 --chimScoreMin 1 --alignIntronMax 100000 --outFilterMismatchNmax 4 --alignTranscriptsPerReadNmax 100000 --outFilterMultimapNmax 2 --outFileNamePrefix /path/to/starout/SRR445016_ --outSAMtype BAM Unsorted --readFilesCommand zcat
 cd /path/to/starout/
 
@@ -110,6 +122,7 @@ date && \
 date
 
 ## 11. DCC version: 0.3.2, URL: https://github.com/dieterich-lab/DCC
+#STAR   version: STAR_2.5.1a
 
 mkdir -p /path/to/outdir/SRR445016_pairs /path/to/outdir/SRR445016_mate1 /path/to/outdir/SRR445016_mate2
 
