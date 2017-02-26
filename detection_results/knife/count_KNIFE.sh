@@ -4,7 +4,10 @@ perl glmReport-forCombine.pl Hela_RNaseR-minus_knife__circJuncProbs.txt 0.78 0.8
 perl glmReport-forCombine.pl Hs68_RNaseR-minus_knife__circJuncProbs.txt 0.78 0.75 1> Hs68_RNaseR-minus_1_circ.num 2> Hs68_RNaseR-minus_2_circ.num
 perl glmReport-forCombine.pl Hs68_RNaseR-plus_knife__circJuncProbs.txt 0.64 0.65 1>Hs68_RNaseR-plus_1_circ.num 2>Hs68_RNaseR-plus_2_circ.num
 perl glmReport-forCombine.pl positive_knife__circJuncProbs.txt 0 0 1>positive_1_circ.num 2>positive_2_circ.num
-perl glmReport-forCombine.pl mixed-polyA_knife__circJuncProbs.txt 0 0 1>mixed-polyA_1_circ.num 2>mixed-polyA_2_circ.num
-perl glmReport-forCombine.pl background-polyA_knife__circJuncProbs.txt 0.97 0.97 1>background-polyA_1_circ.num 2>background-polyA_2_circ.num
-perl glmReport-forCombine.pl mixed-simu_knife__circJuncProbs.txt 0.99 0.99 mixed-simu_1_circ.num 2>mixed-simu_2_circ.num
-perl glmReport-forCombine.pl background-simu_knife__circJuncProbs.txt 0.99 0.99 1>background-simu_1_circ.num 2>background-simu_2_circ.num
+#perl glmReport-forCombine.pl mixed-polyA_knife__circJuncProbs.txt 0 0 1>mixed-polyA_1_circ.num 2>mixed-polyA_2_circ.num
+#perl glmReport-forCombine.pl background-polyA_knife__circJuncProbs.txt 0.97 0.97 1>background-polyA_1_circ.num 2>background-polyA_2_circ.num
+#perl glmReport-forCombine.pl mixed-simu_knife__circJuncProbs.txt 0.99 0.99 mixed-simu_1_circ.num 2>mixed-simu_2_circ.num
+#perl glmReport-forCombine.pl background-simu_knife__circJuncProbs.txt 0.99 0.99 1>background-simu_1_circ.num 2>background-simu_2_circ.num
+#polyA background data was removed from paper finally, only simulated negative data preserved
+perl glmReport-forCombine.pl mixed_knife__circJuncProbs.txt 0.99 0.99 mixed_1_circ.num 2>mixed_2_circ.num
+perl glmReport-forCombine.pl background_knife__circJuncProbs.txt 0.99 0.99 1>background_1_circ.num 2>background_2_circ.num

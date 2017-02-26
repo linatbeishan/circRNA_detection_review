@@ -84,14 +84,15 @@ date
 /path/to/software/KNIFE/circularRNApipeline_Standalone/completeRun.sh /path/to/outdir/SRR445016/reads complete /path/to/outdir/SRR445016 SRR445016 13 phred33 circReads 66 2>&1 | tee SRR445016_out.log 
 
 ## 8. PTESFinder version: 1.0, URL: https://sourceforge.net/projects/ptesfinder-v1/
+#processReadsForPTESFinder.pl: in-house script used to merge fastq_1 & fastq_2 reads from Paired-End sequencing into one file as the input of PTESFinder, provided in this directory.
 
 #!/bin/bash
 if [ ! -d SRR445016 ]; then
    mkdir SRR445016;
 fi
-gzip -dc /path/to/fastq/SRR445016_1.fastq.gz > ./SRR445016_1.fastq && \
+perl /path/to/script/processReadsForPTESFinder.pl /path/to/fastq/SRR445016_1.fastq.gz /path/to/fastq/SRR445016_2.fastq.gz > ./SRR445016.fastq && \
 date && \
-/path/to/software/PTESFinder/PTESFinder.sh -c /path/to/software/PTESFinder/code -r ./SRR445016_1.fastq -d SRR445016 -t /path/to/software/PTESFinder/data/ucsc-hg19-refGene.bed -g /path/to/software/PTESFinder/data/hg19.fa -b /path/to/software/PTESFinder/data/hg19  -s 90 -u 7  && date && echo "ptesfinder done"
+/path/to/software/PTESFinder/PTESFinder.sh -c /path/to/software/PTESFinder/code -r ./SRR445016.fastq -d SRR445016 -t /path/to/software/PTESFinder/data/ucsc-hg19-refGene.bed -g /path/to/software/PTESFinder/data/hg19.fa -b /path/to/software/PTESFinder/data/hg19 -j 10 -s 90 -u 7  && date && echo "ptesfinder done"
 
 ## 9. circRNA_finder version: NA, URL: https://github.com/orzechoj/circRNA_finder
 #STAR	version: STAR_2.5.1a
