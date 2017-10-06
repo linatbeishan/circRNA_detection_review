@@ -7,3 +7,5 @@ Upload the polished CIRIsimulator.pl, demo scripts used, supplemental informatio
 
 **detection_results** directory contains detection results output by each method, and also scripts used to extract backspliced junction reads number for each circRNA from the output result;
 
+**282_verified_circRNAs.xlsx** contains the 282 verified circRNAs we collected. 
+
